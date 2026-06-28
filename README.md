@@ -78,6 +78,11 @@
 </div>
 
 <p align="center">
+  <img src="gifs/chat-stream.gif" alt="BoltWizard chat streaming demo" width="720" />
+</p>
+<p align="center"><sub>↑ a real chat streaming · prompt → assistant reply → <code>&lt;boltAction&gt;</code> blocks → terminal tail.</sub></p>
+
+<p align="center">
   <a href="#install--first-boot"><b>Install</b></a> ·
   <a href="#how-to-use-it"><b>How to use</b></a> ·
   <a href="#architecture"><b>Architecture</b></a> ·
@@ -345,6 +350,11 @@ Two things this loop **never** does, by construction:
 - Runs a command interactively (no `vim`, no `less`, no prompt-waiting REPLs). Every shell call is **bounded by a timeout**.
 - Asks you to wait forever. After one failed retry, the loop drops you back into the chat with the error visible.
 
+<p align="center">
+  <img src="gifs/agent-loop.gif" alt="BoltWizard agent loop rendered live" width="720" />
+</p>
+<p align="center"><sub>↑ a real render of the same loop · prompt → stream → parse → write/run · with live counters.</sub></p>
+
 ---
 
 <a id="how-to-use-it"></a>
@@ -384,6 +394,11 @@ The local servers are reached through same-origin Vite proxies (`/__lmstudio`, `
 3. **Watch it stream.** Each file the agent wants to write appears as an `ActionCard` in the chat. Each command it runs streams into the xterm terminal on the right.
 4. **Preview pans over.** Once the dev server is up, BoltWizard's `server-ready` event surfaces its URL — the live app loads in the preview iframe.
 5. **Iterate by talking.** Edit the model's last reply with a follow-up. The agent re-reads the workspace before each generation.
+
+<p align="center">
+  <img src="gifs/preview-running.gif" alt="BoltWizard preview pane booting up" width="720" />
+</p>
+<p align="center"><sub>↑ the preview pane booting up · status pill transitions booting → starting → ready → live app.</sub></p>
 
 ### Power features
 

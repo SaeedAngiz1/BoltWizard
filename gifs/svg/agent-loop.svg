@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 320" width="720" height="320" role="img" aria-label="BoltWizard — agent loop animation">
+  <defs>
+    <linearGradient id="bg2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0F172A"/>
+      <stop offset="100%" stop-color="#1E1B4B"/>
+    </linearGradient>
+    <marker id="ar" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0 0 L12 6 L0 12 Z" fill="#7C3AED"/>
+    </marker>
+    <radialGradient id="ec" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FBBF24" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#FBBF24" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="720" height="320" fill="url(#bg2)"/>
+
+  <!-- Title -->
+  <text x="24" y="32" font-family="ui-sans-serif, system-ui" font-size="13" fill="#94A3B8" font-weight="600">agent loop · live</text>
+  <circle cx="120" cy="28" r="4" fill="#10B981">
+    <animate attributeName="opacity" values="0.4;1;0.4" dur="1.4s" repeatCount="indefinite"/>
+  </circle>
+  <text x="135" y="32" font-family="ui-sans-serif, system-ui" font-size="11" fill="#10B981">streaming</text>
+
+  <!-- Pipeline boxes -->
+  <g font-family="ui-sans-serif, system-ui" font-size="13" font-weight="700">
+    <!-- Prompt -->
+    <rect x="40"  y="80"  width="120" height="56" rx="12" fill="#EEF2FF" stroke="#6366F1" stroke-width="2"/>
+    <text x="100" y="108" text-anchor="middle" fill="#3730A3">Prompt</text>
+    <text x="100" y="124" text-anchor="middle" font-size="10" font-weight="500" fill="#6366F1">user</text>
+
+    <!-- Stream -->
+    <rect x="200" y="80"  width="120" height="56" rx="12" fill="#F5F3FF" stroke="#7C3AED" stroke-width="2"/>
+    <text x="260" y="108" text-anchor="middle" fill="#5B21B6">Stream</text>
+    <text x="260" y="124" text-anchor="middle" font-size="10" font-weight="500" fill="#7C3AED">model</text>
+
+    <!-- Parse -->
+    <rect x="360" y="80"  width="120" height="56" rx="12" fill="#ECFEFF" stroke="#06B6D4" stroke-width="2"/>
+    <text x="420" y="108" text-anchor="middle" fill="#0E7490">Parse</text>
+    <text x="420" y="124" text-anchor="middle" font-size="10" font-weight="500" fill="#06B6D4">&lt;boltAction&gt;</text>
+
+    <!-- Write -->
+    <rect x="520" y="60"  width="140" height="36" rx="8" fill="#FEF3C7" stroke="#F59E0B" stroke-width="2"/>
+    <text x="590" y="84"  text-anchor="middle" fill="#92400E">Write file</text>
+
+    <!-- Run -->
+    <rect x="520" y="120" width="140" height="36" rx="8" fill="#DCFCE7" stroke="#16A34A" stroke-width="2"/>
+    <text x="590" y="144" text-anchor="middle" fill="#166534">Run cmd</text>
+  </g>
+
+  <!-- Animated pulse travelling through pipeline -->
+  <circle r="10" fill="url(#ec)">
+    <animateMotion dur="3s" repeatCount="indefinite"
+      path="M 100 108 L 260 108 L 420 108 L 590 78 L 590 138 L 590 78 L 590 138"/>
+  </circle>
+  <circle r="4" fill="#FBBF24">
+    <animateMotion dur="3s" repeatCount="indefinite"
+      path="M 100 108 L 260 108 L 420 108 L 590 78 L 590 138 L 590 78 L 590 138"/>
+  </circle>
+
+  <!-- Static arrows -->
+  <line x1="160" y1="108" x2="200" y2="108" stroke="#94A3B8" stroke-width="2" marker-end="url(#ar)"/>
+  <line x1="320" y1="108" x2="360" y2="108" stroke="#94A3B8" stroke-width="2" marker-end="url(#ar)"/>
+  <line x1="480" y1="108" x2="520" y2="78"  stroke="#94A3B8" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#ar)"/>
+  <line x1="480" y1="108" x2="520" y2="138" stroke="#94A3B8" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#ar)"/>
+
+  <!-- Live counters -->
+  <g font-family="ui-monospace, SFMono-Regular, Menlo" font-size="11" fill="#94A3B8">
+    <text x="24"  y="220">files written: <tspan fill="#FBBF24">12</tspan></text>
+    <text x="24"  y="240">cmds run:     <tspan fill="#10B981">8</tspan></text>
+    <text x="24"  y="260">tokens:       <tspan fill="#A78BFA">4 832</tspan></text>
+    <text x="24"  y="280">cost so far:   <tspan fill="#67E8F9">$0.00</tspan> (local)</text>
+  </g>
+
+  <!-- Status pill -->
+  <rect x="500" y="220" width="180" height="48" rx="24" fill="#16A34A"/>
+  <circle cx="528" cy="244" r="6" fill="#FFFFFF">
+    <animate attributeName="opacity" values="0.4;1;0.4" dur="1.2s" repeatCount="indefinite"/>
+  </circle>
+  <text x="546" y="249" font-family="ui-sans-serif, system-ui" font-size="13" fill="#FFFFFF" font-weight="700">READY · awaiting next prompt</text>
+</svg>

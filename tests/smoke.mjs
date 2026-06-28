@@ -118,7 +118,64 @@ assert.match(
   'README should contain a mermaid block for the architecture diagram',
 );
 assert.match(readme, /WebContainers/, 'README must reference WebContainers');
+assert.match(
+  readme,
+  /gifs\/chat-stream\.gif/,
+  'README must embed the chat-stream GIF',
+);
+assert.match(
+  readme,
+  /gifs\/agent-loop\.gif/,
+  'README must embed the agent-loop GIF',
+);
+assert.match(
+  readme,
+  /gifs\/preview-running\.gif/,
+  'README must embed the preview-running GIF',
+);
 assert.doesNotMatch(readme, /BoltGLM/, 'README must NOT contain legacy BoltGLM');
+
+// --- 1b. Localized READMEs (DE + FA) ------------------------------------
+mustExist('README.de.md', 'README.de.md (German) missing');
+mustExist('README.fa.md', 'README.fa.md (Persian/Farsi) missing');
+
+const readmeDe = readRoot('README.de.md');
+assert.match(readmeDe, /BoltWizard/, 'README.de.md must mention BoltWizard');
+assert.match(
+  readmeDe,
+  /Mohammad Saeed Angiz/,
+  'README.de.md must credit the creator',
+);
+assert.match(
+  readmeDe,
+  /gifs\/chat-stream\.gif/,
+  'README.de.md must also embed the chat-stream GIF',
+);
+assert.doesNotMatch(readmeDe, /BoltGLM/, 'README.de.md must NOT contain legacy BoltGLM');
+
+const readmeFa = readRoot('README.fa.md');
+assert.match(readmeFa, /BoltWizard/, 'README.fa.md must mention BoltWizard');
+assert.match(
+  readmeFa,
+  /dir="rtl"|dir='rtl'/i,
+  'README.fa.md must declare RTL direction',
+);
+assert.match(
+  readmeFa,
+  /Mohammad Saeed Angiz/,
+  'README.fa.md must credit the creator',
+);
+assert.doesNotMatch(readmeFa, /\u0628\u0648\u0644\u062a\u06af\u0644\u0645/, 'README.fa.md must NOT contain legacy BoltGLM');
+
+// --- 1c. Real animated GIFs ----------------------------------------------
+const requiredGifs = [
+  'gifs/chat-stream.gif',
+  'gifs/agent-loop.gif',
+  'gifs/preview-running.gif',
+];
+for (const g of requiredGifs) {
+  mustExist(g, `expected animated GIF asset missing: ${g}`);
+}
 
 // --- 2. WebContainer / COOP-COEP isolation unchanged ----------------------
 const vite = readRoot('vite.config.ts');
