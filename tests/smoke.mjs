@@ -148,6 +148,11 @@ assert.match(
 );
 assert.match(
   readmeDe,
+  /Chrome[^.\n]*empfohlen|dringend empfohlen/,
+  'README.de.md must recommend Chrome as the primary browser (German).',
+);
+assert.match(
+  readmeDe,
   /gifs\/chat-stream\.gif/,
   'README.de.md must also embed the chat-stream GIF',
 );
@@ -155,6 +160,11 @@ assert.doesNotMatch(readmeDe, /BoltGLM/, 'README.de.md must NOT contain legacy B
 
 const readmeFa = readRoot('README.fa.md');
 assert.match(readmeFa, /BoltWizard/, 'README.fa.md must mention BoltWizard');
+assert.match(
+  readmeFa,
+  /(Google Chrome|کروم)[\s\S]{0,80}توصیه|اکیداً توصیه/,
+  'README.fa.md must recommend Chrome as the primary browser (Persian).',
+);
 assert.match(
   readmeFa,
   /dir="rtl"|dir='rtl'/i,
@@ -166,6 +176,13 @@ assert.match(
   'README.fa.md must credit the creator',
 );
 assert.doesNotMatch(readmeFa, /\u0628\u0648\u0644\u062a\u06af\u0644\u0645/, 'README.fa.md must NOT contain legacy BoltGLM');
+
+// --- 1c. Chrome must be explicitly recommended in every README variant ----
+assert.match(
+  readRoot('README.md'),
+  /Google Chrome[\s\S]{0,120}recommend/,
+  'README.md must explicitly recommend Google Chrome as the best browser.',
+);
 
 // --- 1c. Real animated GIFs ----------------------------------------------
 const requiredGifs = [

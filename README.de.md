@@ -316,7 +316,7 @@ Zwei Dinge macht diese Schleife **nie**, schon vom Aufbau her:
 
 ### Installation & erster Start
 
-Du brauchst **Node.js ≥ 20** und einen **Chromium-basierten Browser** (Chrome oder Edge) für die Sandbox im Browser.
+Du brauchst **Node.js ≥ 20** und **Google Chrome** — dringend empfohlen (beste Unterstützung für WebContainer, COOP/COEP und SharedArrayBuffer). Jeder **Chromium-basierte Browser** funktioniert (Microsoft Edge ebenfalls; Firefox/Safari werden nicht unterstützt).
 
 ```bash
 npm install

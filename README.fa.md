@@ -257,7 +257,7 @@ flowchart LR
 
 ### نصب و اولین بوت
 
-به **Node.js ≥ 20** و یک **مرورگر مبتنی بر Chromium** (Chrome یا Edge) برای sandbox درون‌مرورگری نیاز دارید.
+به **Node.js ≥ 20** و **مرورگر Google Chrome** — اکیداً توصیه‌شده (بهترین پشتیبانی از WebContainer، COOP/COEP و SharedArrayBuffer). هر **مرورگر مبتنی بر Chromium** کار می‌کند (Microsoft Edge هم همین‌طور؛ Firefox/Safari پشتیبانی نمی‌شوند).
 
 ```bash
 npm install

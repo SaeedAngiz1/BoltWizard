@@ -363,7 +363,7 @@ Two things this loop **never** does, by construction:
 
 ### Install & first boot
 
-You'll need **Node.js ≥ 20** and a **Chromium-based browser** (Chrome or Edge) for the in-browser sandbox.
+You'll need **Node.js ≥ 20** and **Google Chrome** — strongly recommended (best WebContainer + COOP/COEP + SharedArrayBuffer support). Any **Chromium-based browser** will work (Microsoft Edge runs it too; Firefox/Safari are not supported).
 
 ```bash
 npm install
