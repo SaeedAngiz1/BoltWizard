@@ -74,7 +74,10 @@ function runLint(changedPath) {
 }
 
 function runTests() {
-  return run('npx vitest run --reporter=verbose', 'vitest', c.magenta);
+  // Delegate to the project's own `npm test` so the test stack stays
+  // pluggable. The default smoke suite lives in tests/smoke.mjs and uses
+  // node's built-in `assert` — no extra deps required.
+  return run('npm test --silent', 'test', c.magenta);
 }
 
 // ---- debounced change handler ----------------------------------------------

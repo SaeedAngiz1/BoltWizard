@@ -1,9 +1,9 @@
 {
-  "name": "bolt-glm",
+  "name": "bolt-wizard",
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "Browser-based full-stack AI dev agent — WebContainers + multi-provider LLM. No local setup.",
+  "description": "BoltWizard — in-browser full-stack AI dev agent. Build, run, and preview real apps with a local-first WebContainer + multi-provider LLM.",
   "engines": {
     "node": ">=20"
   },
@@ -11,6 +11,8 @@
     "dev": "vite --host",
     "build": "tsc -b && vite build",
     "preview": "vite preview",
+    "lint": "eslint .",
+    "test": "node tests/smoke.mjs",
     "watch": "node scripts/watch.js --lint --test",
     "diagnose:layout": "node scripts/diagnose-layout.mjs",
     "render:pipeline": "node scripts/render-pipeline.mjs",
@@ -31,9 +33,13 @@
     "zustand": "^5.0.3"
   },
   "devDependencies": {
+    "@eslint/js": "^9.17.0",
     "@types/react": "^18.3.18",
     "@types/react-dom": "^18.3.5",
     "@vitejs/plugin-react": "^4.3.4",
+    "chokidar": "^4.0.1",
+    "eslint": "^9.17.0",
+    "globals": "^15.14.0",
     "typescript": "^5.7.3",
     "vite": "^6.0.0"
   }

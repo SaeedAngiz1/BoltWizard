@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="BoltWizard icon">
+  <title>BoltWizard</title>
+  <!-- Brim -->
+  <ellipse cx="32" cy="52" rx="28" ry="6" fill="#5B21B6"/>
+  <ellipse cx="32" cy="51" rx="26" ry="4.5" fill="#6D28D9"/>
+  <!-- Cone (slightly off-center apex reads as "wizard") -->
+  <path d="M34 4 L54 50 L10 50 Z" fill="#7C3AED"/>
+  <!-- Lightning bolt -->
+  <path d="M38 9 L21 30 L31 30 L26 47 L43 22 L33 22 Z" fill="#FBBF24"/>
+</svg>

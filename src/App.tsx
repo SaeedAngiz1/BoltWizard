@@ -12,6 +12,8 @@ import { CommandPalette } from './components/CommandPalette';
 import { Settings } from './components/Settings';
 import { Toaster } from './components/Toaster';
 import { BootOverlay } from './components/BootOverlay';
+import { Footer } from './components/Footer';
+import { LegalView, useLegalRoute } from './components/Legal';
 import { PipelineDrawer } from './components/pipeline/PipelineDrawer';
 
 /**
@@ -71,6 +73,20 @@ export default function App() {
   const showTerminal = bootStatus === 'ready' || bootStatus === 'dev-running';
   const showOverlay = bootStatus === 'booting' || bootStatus === 'idle' || bootStatus === 'error';
 
+  // Hash routes (#/about, #/terms, #/privacy) swap the workspace for the legal
+  // view but keep the same TopBar + Footer so chrome stays consistent.
+  const legalRoute = useLegalRoute();
+  if (legalRoute) {
+    return (
+      <div className="app-shell">
+        <TopBar />
+        <LegalView route={legalRoute} />
+        <Footer />
+        <Toaster />
+      </div>
+    );
+  }
+
   return (
     <div className="app-shell">
       <TopBar />
@@ -108,6 +124,8 @@ export default function App() {
           </Group>
         </Panel>
       </Group>
+
+      <Footer />
 
       <CommandPalette />
       <Settings />

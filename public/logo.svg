@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="BoltWizard">
+  <title>BoltWizard — wizard hat with lightning bolt</title>
+  <!-- Brim: outer shadow + inner highlight give the disc real depth. -->
+  <ellipse cx="50" cy="82" rx="44" ry="9" fill="#4C1D95"/>
+  <ellipse cx="50" cy="80" rx="40" ry="7" fill="#6D28D9"/>
+  <!-- Hat band: subtle ribbon where brim meets cone. -->
+  <path d="M22 67 Q50 62 78 67 Q50 72 22 67 Z" fill="#5B21B6"/>
+  <!-- Cone: triangle with a slightly off-center apex for character. -->
+  <path d="M52 6 L84 78 L16 78 Z" fill="#7C3AED"/>
+  <!-- Lightning bolt charge: golden sigil on the cone. -->
+  <path d="M58 14 L34 46 L48 46 L40 70 L66 36 L52 36 Z" fill="#FBBF24"/>
+</svg>

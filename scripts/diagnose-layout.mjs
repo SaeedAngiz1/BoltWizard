@@ -35,7 +35,7 @@ const metrics = await page.evaluate(() => {
   };
   const all = (sel) => [...document.querySelectorAll(sel)].map((el) => {
     const r = el.getBoundingClientRect();
-    return { tag: el.getAttribute('data-panel') != null ? 'panel' : el.className, w: Math.round(r.width), h: Math.round(r.height) };
+    return { tag: el.hasAttribute('data-panel') ? 'panel' : el.className, w: Math.round(r.width), h: Math.round(r.height) };
   });
   return {
     root: pick('#root'),

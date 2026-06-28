@@ -87,7 +87,7 @@ export function BootOverlay() {
           </>
         ) : (
           <>
-            <h1 className="boot-title">Booting BoltGLM</h1>
+            <h1 className="boot-title">Booting BoltWizard</h1>
             <p className="boot-sub">Spinning up your in-browser WebContainer…</p>
             <div className="boot-steps">
               <div className="boot-step">

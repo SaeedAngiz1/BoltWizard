@@ -1,5 +1,5 @@
 /* ============================================================================
-   BoltGLM — Design System
+   BoltWizard — Design System
    A cohesive, modern UI system (Linear / Vercel / Raycast aesthetic).
    Both themes via [data-theme]; every component uses CSS variables only.
    ============================================================================ */
@@ -25,6 +25,10 @@
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --dur-fast: 0.15s;
   --dur: 0.22s;
+
+  /* BoltWizard brand accent — the lightning-bolt yellow that pairs with the
+     violet hat. Used by the wordmark "Wizard" half and inline marks. */
+  --bolt: #fbbf24;
 }
 
 /* ---- Dark theme (default) ------------------------------------------------ */
@@ -241,23 +245,31 @@ a:hover { text-decoration: underline; }
   user-select: none;
 }
 
+/*
+ * The topbar mark wraps the brand SVG, which carries its own colors. The
+ * wrapper is just a sized grid cell; SVG children render at intrinsic size.
+ */
 .topbar__mark {
   width: 28px;
   height: 28px;
   border-radius: 8px;
   display: grid;
   place-items: center;
-  color: var(--accent-contrast);
-  background: linear-gradient(135deg, var(--accent), var(--accent-2));
-  box-shadow: 0 2px 8px var(--accent-soft), inset 0 1px 0 rgba(255, 255, 255, 0.25);
   flex-shrink: 0;
+  overflow: hidden;
 }
+.topbar__mark > svg { display: block; border-radius: 6px; }
 
 .topbar__title {
   font-weight: 650;
   font-size: 15px;
   letter-spacing: -0.01em;
+  display: inline-flex;
+  align-items: baseline;
+  user-select: none;
 }
+.topbar__title-bolt { color: var(--accent); }
+.topbar__title-wizard { color: var(--bolt); }
 
 .topbar__spacer {
   flex: 1;
@@ -3137,4 +3149,301 @@ button:disabled { opacity: 0.5; cursor: default; }
   .role-row { flex-direction: column; }
   .role-row__head { flex: none; }
   .role-row__fields { grid-template-columns: 1fr; }
+}
+
+/* ============================================================================
+   28. Footer (creator credit + About · Terms · Privacy links)
+   Always visible at the bottom of the app shell on EVERY screen.
+   ============================================================================ */
+.appfooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 8px 16px;
+  border-top: 1px solid var(--border);
+  background: var(--bg-1);
+  flex-shrink: 0;
+  height: 42px;
+  font-size: 12.5px;
+  color: var(--text-muted);
+  user-select: none;
+}
+.appfooter__col {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+.appfooter__col--brand { flex: 1; min-width: 0; }
+.appfooter__mark {
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+.appfooter__mark > svg { display: block; }
+.appfooter__name {
+  font-weight: 650;
+  color: var(--text);
+  letter-spacing: -0.01em;
+  font-size: 13px;
+  display: inline-flex;
+  align-items: baseline;
+}
+.appfooter__name-bolt { color: var(--accent); }
+.appfooter__name-wizard { color: var(--bolt); }
+.appfooter__credit {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--text-muted);
+}
+.appfooter__credit strong { color: var(--text); font-weight: 650; }
+.appfooter__sep {
+  color: var(--text-faint);
+  user-select: none;
+}
+.appfooter__link {
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color var(--dur) var(--ease);
+}
+.appfooter__link:hover {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+@media (max-width: 720px) {
+  .appfooter__credit { display: none; }
+  .appfooter { padding: 8px 12px; gap: 10px; }
+}
+
+/* ============================================================================
+   29. Legal pages (About / Terms / Privacy via hash routes)
+   Hash links (e.g. #/about) are caught by App's hash listener and swap the
+   workspace for <LegalView/> while keeping the same TopBar + Footer.
+   ============================================================================ */
+.legal {
+  flex: 1;
+  min-height: 0;
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.legal__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-1);
+  flex-shrink: 0;
+}
+
+.legal__nav {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+.legal__navlink {
+  padding: 6px 11px;
+  border-radius: var(--r-pill);
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: all var(--dur) var(--ease);
+}
+.legal__navlink:hover {
+  background: var(--bg-2);
+  color: var(--text);
+}
+.legal__navlink--active {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.legal__body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 32px clamp(16px, 6vw, 56px) 64px;
+}
+
+.legal__doc {
+  max-width: 720px;
+  margin: 0 auto;
+  color: var(--text);
+  font-size: 14px;
+  line-height: 1.65;
+}
+.legal__doc > * + * { margin-top: 14px; }
+.legal__doc-head { margin-bottom: 8px; }
+.legal__doc-head .muted { margin-top: 4px; }
+.legal__h1 {
+  font-size: 28px;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.legal__h1::before {
+  content: "✦";
+  color: var(--bolt);
+  font-size: 22px;
+  line-height: 1;
+}
+.legal__h2 {
+  font-size: 17px;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  margin-top: 28px;
+  color: var(--text);
+}
+.legal__h3 {
+  font-size: 14.5px;
+  font-weight: 600;
+  margin-top: 22px;
+  color: var(--text);
+}
+.legal__doc p { color: var(--text); }
+.legal__doc ul,
+.legal__doc ol { padding-left: 22px; color: var(--text); }
+.legal__doc li { margin: 4px 0; }
+.legal__doc li::marker { color: var(--text-faint); }
+.legal__doc strong { font-weight: 650; color: var(--text); }
+.legal__doc .muted { color: var(--text-muted); }
+.legal__doc .small { font-size: 12.5px; }
+.legal__doc .faint { color: var(--text-faint); }
+.legal__doc hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 24px 0;
+}
+.legal__doc a {
+  color: var(--accent-2);
+  text-decoration: none;
+  border-bottom: 1px dashed color-mix(in srgb, var(--accent-2) 50%, transparent);
+  transition: border-bottom-color var(--dur) var(--ease);
+}
+.legal__doc a:hover {
+  border-bottom-style: solid;
+  border-bottom-color: var(--accent-2);
+}
+.legal__doc code {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  padding: 1.5px 5px;
+  border-radius: var(--r-sm);
+  background: var(--bg-3);
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+.legal__doc :last-child { margin-bottom: 0; }
+
+.legal__signoff {
+  font-style: italic;
+  color: var(--text-muted);
+  margin-top: 14px;
+}
+
+.legal-pin {
+  padding: 12px 16px;
+  border-radius: var(--r);
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent) 28%, var(--border));
+  color: var(--text);
+  font-size: 14.5px;
+  margin: 4px 0 18px;
+}
+
+@media (max-width: 720px) {
+  .legal__body { padding: 20px 14px 48px; }
+  .legal__h1 { font-size: 22px; }
+}
+
+/* ---- Legal hero (About page) ------------------------------------------- */
+.legal-hero {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 28px 24px;
+  border-radius: var(--r-lg);
+  border: 1px solid var(--border);
+  background:
+    radial-gradient(800px 240px at 30% -10%, var(--accent-soft), transparent 70%),
+    linear-gradient(180deg, var(--bg-1), var(--bg));
+  position: relative;
+  overflow: hidden;
+}
+.legal-hero__mark {
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  color: var(--accent-contrast);
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  box-shadow:
+    0 6px 24px var(--accent-soft),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+.legal-hero__title {
+  font-size: 24px;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+.legal-hero__credit {
+  font-size: 14px;
+  color: var(--text-muted);
+}
+.legal-hero__credit strong {
+  color: var(--text);
+  font-weight: 650;
+}
+.legal-hero__lede {
+  color: var(--text);
+  font-size: 14.5px;
+  line-height: 1.6;
+  max-width: 620px;
+}
+
+.legal-pills {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 10px;
+  margin-top: 8px;
+}
+.legal-pill {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  background: var(--bg-1);
+}
+.legal-pill__title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+}
+.legal-pill__body {
+  font-size: 12.5px;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+@media (max-width: 720px) {
+  .legal-hero { padding: 20px 18px; }
+  .legal-hero__title { font-size: 20px; }
 }

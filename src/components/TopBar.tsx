@@ -1,7 +1,7 @@
 import { useStore } from '../store';
 import { PROVIDERS } from '../lib/llm/providers';
 import { useResources } from '../lib/pipeline/resources';
-import { Zap, Sun, Moon, Settings as SettingsIcon, Command, Brain, Cpu } from 'lucide-react';
+import { Sun, Moon, Settings as SettingsIcon, Command, Brain, Cpu } from 'lucide-react';
 import type { BootStatus } from '../store';
 
 const BOOT_LABEL: Record<BootStatus, string> = {
@@ -61,9 +61,20 @@ export function TopBar() {
     <header className="topbar">
       <div className="topbar__brand">
         <span className="topbar__mark" aria-hidden="true">
-          <Zap size={16} strokeWidth={2.5} />
+          {/* Inline brand mark — wizard hat (cone + brim) with a golden
+              lightning-bolt sigil. The SVG carries its own colors so the wrapper
+              is just a sized cell. */}
+          <svg viewBox="0 0 64 64" width="24" height="24">
+            <ellipse cx="32" cy="52" rx="28" ry="6" fill="#5B21B6" />
+            <ellipse cx="32" cy="51" rx="26" ry="4.5" fill="#6D28D9" />
+            <path d="M34 4 L54 50 L10 50 Z" fill="#7C3AED" />
+            <path d="M38 9 L21 30 L31 30 L26 47 L43 22 L33 22 Z" fill="#FBBF24" />
+          </svg>
         </span>
-        <span className="topbar__title">BoltGLM</span>
+        <span className="topbar__title">
+          <span className="topbar__title-bolt">Bolt</span>
+          <span className="topbar__title-wizard">Wizard</span>
+        </span>
       </div>
 
       <div className="status-pill" title={`WebContainer: ${BOOT_LABEL[boot]}`}>

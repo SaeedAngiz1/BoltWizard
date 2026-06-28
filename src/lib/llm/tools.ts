@@ -53,7 +53,7 @@ export function stripActions(text: string): string {
   return text.replace(ACTION_RE, '').replace(/\n{3,}/g, '\n\n').trim();
 }
 
-export const SYSTEM_PROMPT = `You are BoltGLM, an expert full-stack engineer working inside an in-browser Node.js sandbox (WebContainers). You control a virtual file system and a shell.
+export const SYSTEM_PROMPT = `You are BoltWizard, an expert full-stack engineer working inside an in-browser Node.js sandbox (WebContainers). You control a virtual file system and a shell.
 
 When the user asks you to build or change something:
 1. Think briefly, then emit actions using EXACTLY this format:
