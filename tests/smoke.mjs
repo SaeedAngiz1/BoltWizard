@@ -98,6 +98,28 @@ assert.match(
   'LLM system prompt must introduce itself as BoltWizard',
 );
 
+// --- 1a. README / GitHub-facing project landing --------------------------
+mustExist('README.md', 'README.md missing — the GitHub landing page must exist');
+const readme = readRoot('README.md');
+assert.match(readme, /BoltWizard/, 'README must mention BoltWizard');
+assert.match(
+  readme,
+  /Mohammad Saeed Angiz/,
+  'README must credit the creator Mohammad Saeed Angiz',
+);
+assert.match(
+  readme,
+  /<animate/,
+  'README must contain at least one <animate> element (animation requirement)',
+);
+assert.match(
+  readme,
+  /mermaid/,
+  'README should contain a mermaid block for the architecture diagram',
+);
+assert.match(readme, /WebContainers/, 'README must reference WebContainers');
+assert.doesNotMatch(readme, /BoltGLM/, 'README must NOT contain legacy BoltGLM');
+
 // --- 2. WebContainer / COOP-COEP isolation unchanged ----------------------
 const vite = readRoot('vite.config.ts');
 assert.match(
